@@ -9,6 +9,11 @@ Example of Anomaly Detection using <a href="https://www.sciencedirect.com/scienc
   <p>The architecture of F-AnoGAN [1].</p>
 </div>
 
+<div align="center">
+  <img src="./figures/anomaly_score.png" width="750">  
+  <p>The logic for calculating anomaly score [1].</p>
+</div>
+
 ## Problem Definition
 <div align="center">
   <img src="./figures/definition.png" width="600">  
