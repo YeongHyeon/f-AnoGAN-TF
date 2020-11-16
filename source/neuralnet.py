@@ -45,13 +45,13 @@ class f_AnoGAN(object):
                 self.learning_rate, name='Adam_e').minimize(\
                 self.losses['loss_e'], var_list=self.variables['params_e'])
 
-        tf.compat.v1.summary.scalar('WGAN/mean_real', self.losses['mean_real'])
-        tf.compat.v1.summary.scalar('WGAN/mean_fake', self.losses['mean_fake'])
-        tf.compat.v1.summary.scalar('WGAN/mean_real', self.losses['izi'])
-        tf.compat.v1.summary.scalar('WGAN/mean_fake', self.losses['ziz'])
-        tf.compat.v1.summary.scalar('WGAN/loss_d', self.losses['loss_d'])
-        tf.compat.v1.summary.scalar('WGAN/loss_g', self.losses['loss_g'])
-        tf.compat.v1.summary.scalar('WGAN/loss_e', self.losses['loss_e'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/mean_real', self.losses['mean_real'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/mean_fake', self.losses['mean_fake'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/mean_real', self.losses['izi'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/mean_fake', self.losses['ziz'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/loss_d', self.losses['loss_d'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/loss_g', self.losses['loss_g'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/loss_e', self.losses['loss_e'])
         self.summaries = tf.compat.v1.summary.merge_all()
 
         self.__init_session(path=self.path_ckpt)
