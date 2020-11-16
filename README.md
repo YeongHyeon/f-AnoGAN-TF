@@ -1,7 +1,7 @@
 f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks
 =====
 
-Example of Anomaly Detection using <a href="https://www.sciencedirect.com/science/article/abs/pii/S1361841518302640">f-AnoGAN</a>.
+TensorFlow implementation of <a href="https://www.sciencedirect.com/science/article/abs/pii/S1361841518302640">f-AnoGAN</a> with MNIST dataset [1].
 
 ## Summary
 
