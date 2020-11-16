@@ -115,7 +115,9 @@ def training_wgan(neuralnet, dataset, epochs, batch_size, normalize=True):
             %(epoch, epochs, iteration, step_dict['loss_d'], step_dict['loss_g']))
         neuralnet.save_parameter(model='model_checker', epoch=epoch)
 
-def training_izi(neuralnet, dataset, epochs, batch_size, normalize=True):
+    return iteration
+
+def training_izi(neuralnet, dataset, epochs, batch_size, normalize=True, iteration=0):
 
     print("\nTraining izi to %d epochs (%d of minibatch size)" %(epochs, batch_size))
 
@@ -123,7 +125,7 @@ def training_izi(neuralnet, dataset, epochs, batch_size, normalize=True):
     result_list = ["restoration"]
     for result_name in result_list: make_dir(path=os.path.join("training", result_name))
 
-    iteration = 0
+    iteration = iteration
     test_sq = 20
     test_size = test_sq**2
     for epoch in range(epochs):
@@ -144,9 +146,9 @@ def training_izi(neuralnet, dataset, epochs, batch_size, normalize=True):
             iteration += 1
             if(terminator): break
 
-        print("Epoch [%d / %d] (%d iteration)  D:%.3f, G:%.3f" \
-            %(epoch, epochs, iteration, step_dict['loss_d'], step_dict['loss_g']))
-        neuralnet.save_parameter(model='model_checker', epoch=epoch)
+        print("Epoch [%d / %d] (%d iteration)  E:%.3f" \
+            %(epoch, epochs, iteration, step_dict['loss_e']))
+        neuralnet.save_parameter(model='model_checker', epoch=epochs+epoch)
 
 def test(neuralnet, dataset, batch_size):
 

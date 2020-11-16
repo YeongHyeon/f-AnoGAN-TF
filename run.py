@@ -16,10 +16,10 @@ def main():
     neuralnet.confirm_params(verbose=False)
     # neuralnet.confirm_bn()
 
-    tfp.training_wgan(neuralnet=neuralnet, dataset=dataset, \
+    iteration = tfp.training_wgan(neuralnet=neuralnet, dataset=dataset, \
         epochs=FLAGS.epoch, batch_size=FLAGS.batch, normalize=True)
     tfp.training_izi(neuralnet=neuralnet, dataset=dataset, \
-        epochs=FLAGS.epoch, batch_size=FLAGS.batch, normalize=True)
+        epochs=FLAGS.epoch, batch_size=FLAGS.batch, normalize=True, iteration=iteration)
     tfp.test(neuralnet=neuralnet, dataset=dataset, \
         batch_size=FLAGS.batch)
 
