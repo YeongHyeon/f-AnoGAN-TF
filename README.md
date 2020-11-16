@@ -1,7 +1,8 @@
 f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networks
 =====
 
-TensorFlow implementation of <a href="https://www.sciencedirect.com/science/article/abs/pii/S1361841518302640">f-AnoGAN</a> with MNIST dataset [1].
+TensorFlow implementation of <a href="https://www.sciencedirect.com/science/article/abs/pii/S1361841518302640">f-AnoGAN</a> with MNIST dataset [1].  
+The base model <a href="https://github.com/YeongHyeon/WGAN-TF">WGAN</a> is also implemented with TensorFlow.   
 
 ## Summary
 
