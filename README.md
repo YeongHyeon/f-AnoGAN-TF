@@ -3,20 +3,25 @@ f-AnoGAN: Fast unsupervised anomaly detection with generative adversarial networ
 
 Example of Anomaly Detection using <a href="https://www.sciencedirect.com/science/article/abs/pii/S1361841518302640">f-AnoGAN</a>.
 
-## Architecture
-<div align="center">
-  <img src="./figures/fanogan.png" width="750">  
-  <p>The architecture of F-AnoGAN [1].</p>
-</div>
+## Summary
 
+### f-AnoGAN architecture  
 <div align="center">
+  <img src="./figures/fanogan.png" width="650">  
+  <p>The architecture of f-AnoGAN [1].</p>
   <img src="./figures/anomaly_score.png" width="750">  
   <p>The logic for calculating anomaly score [1].</p>
 </div>
 
-## Problem Definition
+### Graph in TensorBoard
 <div align="center">
-  <img src="./figures/definition.png" width="600">  
+  <img src="./figures/graph.png" width="650">  
+  <p>Graph of f-AnoGAN.</p>
+</div>
+
+### Problem Definition
+<div align="center">
+  <img src="./figures/definition.png" width="450">  
   <p>'Class-1' is defined as normal and the others are defined as abnormal.</p>
 </div>
 
