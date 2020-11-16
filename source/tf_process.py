@@ -162,9 +162,9 @@ def test(neuralnet, dataset, batch_size):
     loss_list = []
     while(True):
         x_te, y_te, terminator = dataset.next_test(1)
-
-        step_dict = neuralnet.step(x=x_te, training=False, phase=1)
-        x_fake, loss_enc = step_dict['x_fake'], step_dict['loss_enc']
+        z_te = random_noise(1, neuralnet.zdim)
+        step_dict = neuralnet.step(x=x_te, z=z_te, training=False, phase=1)
+        x_fake, loss_enc = step_dict['x_fake'], step_dict['loss_e']
         if(y_te[0] == 1):
             loss_list.append(loss_enc)
 
@@ -182,8 +182,8 @@ def test(neuralnet, dataset, batch_size):
     z_enc_tot, y_te_tot = None, None
     loss4box = [[], [], [], [], [], [], [], [], [], []]
     while(True):
-        x_te, y_te, _ = dataset.next_test(batch_size=test_size)
-        z_te = random_noise(test_size, neuralnet.zdim)
+        x_te, y_te, terminator = dataset.next_test(1)
+        z_te = random_noise(1, neuralnet.zdim)
         step_dict = neuralnet.step(x=x_te, z=z_te, training=False, phase=1)
         x_fake = step_dict['x_fake']
 

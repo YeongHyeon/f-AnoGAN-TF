@@ -93,7 +93,7 @@ class f_AnoGAN(object):
             for summaries in summary_list:
                 self.summary_writer.add_summary(summaries, iteration)
 
-        if():
+        if(phase == 0):
             x_fake, loss_d, loss_g, loss_e = \
                 self.sess.run([self.variables['g_fake'], self.losses['loss_d'], self.losses['loss_g'], self.losses['loss_e']], \
                 feed_dict=feed_te)
