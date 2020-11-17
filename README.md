@@ -28,6 +28,70 @@ The base model <a href="https://github.com/YeongHyeon/WGAN-TF">WGAN</a> is also 
 
 ## Results
 
+### Training Phase-1 (WGAN Training)
+<div align="center">
+
+
+|Term Real|Term Fake|
+|:---:|:---:|
+|<img src="./figures/f-AnoGAN_mean_real.png" width="300">|<img src="./figures/f-AnoGAN_mean_fake.png" width="300">|
+
+|Loss D (Discriminator)|Loss G (Generator)|
+|:---:|:---:|
+|<img src="./figures/f-AnoGAN_loss_d.png" width="300">|<img src="./figures/f-AnoGAN_loss_g.png" width="300">|
+
+</div>
+
+### Training Phase-2 (izi Training)
+<div align="center">
+
+|Term izi|Term ziz|Loss E (Encoder)|
+|:---:|:---:|:---:|
+|<img src="./figures/f-AnoGAN_mean_izi.png" width="300">|<img src="./figures/f-AnoGAN_mean_ziz.png" width="300">|<img src="./figures/f-AnoGAN_loss_e.png" width="300">|
+
+</div>
+
+<div align="center">
+  <img src="./figures/restoring.png" width="800">  
+  <p>Restoration result by f-AnoGAN.</p>
+</div>
+
+### Test Procedure
+<div align="center">
+  <img src="./figures/test-box.png" width="400">
+  <p>Box plot with encoding loss of test procedure.</p>
+</div>
+
+<div align="center">
+  <p>
+    <img src="./figures/in_in01.png" width="130">
+    <img src="./figures/in_in02.png" width="130">
+    <img src="./figures/in_in03.png" width="130">
+  </p>
+  <p>Normal samples classified as normal.</p>
+
+  <p>
+    <img src="./figures/in_out01.png" width="130">
+    <img src="./figures/in_out02.png" width="130">
+    <img src="./figures/in_out03.png" width="130">
+  </p>
+  <p>Abnormal samples classified as normal.</p>
+
+  <p>
+    <img src="./figures/out_in01.png" width="130">
+    <img src="./figures/out_in02.png" width="130">
+    <img src="./figures/out_in03.png" width="130">
+  </p>
+  <p>Normal samples classified as abnormal.</p>
+
+  <p>
+    <img src="./figures/out_out01.png" width="130">
+    <img src="./figures/out_out02.png" width="130">
+    <img src="./figures/out_out03.png" width="130">
+  </p>
+  <p>Abnormal samples classified as abnormal.</p>
+</div>
+
 
 ## Environment
 * Python 3.7.4  
