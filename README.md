@@ -34,11 +34,11 @@ The base model <a href="https://github.com/YeongHyeon/WGAN-TF">WGAN</a> is also 
 
 |Term Real|Term Fake|
 |:---:|:---:|
-|<img src="./figures/f-AnoGAN_mean_real.png" width="300">|<img src="./figures/f-AnoGAN_mean_fake.png" width="300">|
+|<img src="./figures/f-AnoGAN_mean_real.svg" width="300">|<img src="./figures/f-AnoGAN_mean_fake.svg" width="300">|
 
 |Loss D (Discriminator)|Loss G (Generator)|
 |:---:|:---:|
-|<img src="./figures/f-AnoGAN_loss_d.png" width="300">|<img src="./figures/f-AnoGAN_loss_g.png" width="300">|
+|<img src="./figures/f-AnoGAN_loss_d.svg" width="300">|<img src="./figures/f-AnoGAN_loss_g.svg" width="300">|
 
 </div>
 
@@ -47,10 +47,11 @@ The base model <a href="https://github.com/YeongHyeon/WGAN-TF">WGAN</a> is also 
 
 |Term izi|Term ziz|Loss E (Encoder)|
 |:---:|:---:|:---:|
-|<img src="./figures/f-AnoGAN_mean_izi.png" width="300">|<img src="./figures/f-AnoGAN_mean_ziz.png" width="300">|<img src="./figures/f-AnoGAN_loss_e.png" width="300">|
+|<img src="./figures/f-AnoGAN_mean_izi.svg" width="300">|<img src="./figures/f-AnoGAN_mean_ziz.svg" width="300">|<img src="./figures/f-AnoGAN_loss_e.svg" width="300">|
 
 </div>
 
+### Result of Training
 <div align="center">
   <img src="./figures/restoring.png" width="800">  
   <p>Restoration result by f-AnoGAN.</p>
