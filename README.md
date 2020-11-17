@@ -29,6 +29,9 @@ The base model <a href="https://github.com/YeongHyeon/WGAN-TF">WGAN</a> is also 
 ## Results
 
 ### Training Phase-1 (WGAN Training)
+
+The rear half of the graph represents the state of the training phase 2.  
+
 <div align="center">
 
 
@@ -43,6 +46,9 @@ The base model <a href="https://github.com/YeongHyeon/WGAN-TF">WGAN</a> is also 
 </div>
 
 ### Training Phase-2 (izi Training)
+
+The front half of the graph represents the state of the training phase 1.  
+
 <div align="center">
 
 |Term izi|Term ziz|Loss E (Encoder)|
