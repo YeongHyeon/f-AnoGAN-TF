@@ -57,6 +57,8 @@ The rear half of the graph represents the state of the training phase 2.
 |:---:|:---:|
 |<img src="./figures/z64.png" width="250">|<img src="./figures/z128.png" width="250">|
 
+</div>
+
 ### Training Phase-2 (izi Training)
 
 #### Training graph of Phase-2
