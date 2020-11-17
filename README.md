@@ -30,6 +30,7 @@ The base model <a href="https://github.com/YeongHyeon/WGAN-TF">WGAN</a> is also 
 
 ### Training Phase-1 (WGAN Training)
 
+#### Training graph of Phase-1
 The rear half of the graph represents the state of the training phase 2.  
 
 <div align="center">
@@ -45,8 +46,20 @@ The rear half of the graph represents the state of the training phase 2.
 
 </div>
 
+#### Result of Phase-1
+<div align="center">
+
+|z:2|z:2 (latent space walking)|
+|:---:|:---:|
+|<img src="./figures/z02.png" width="250">|<img src="./figures/z02_lw.png" width="250">|
+
+|z:64|z:128|
+|:---:|:---:|
+|<img src="./figures/z64.png" width="250">|<img src="./figures/z128.png" width="250">|
+
 ### Training Phase-2 (izi Training)
 
+#### Training graph of Phase-2
 The front half of the graph represents the state of the training phase 1.  
 
 <div align="center">
@@ -57,7 +70,7 @@ The front half of the graph represents the state of the training phase 1.
 
 </div>
 
-### Result of Training
+#### Result of Phase-2
 <div align="center">
   <img src="./figures/restoring.png" width="800">  
   <p>Restoration result by f-AnoGAN.</p>
