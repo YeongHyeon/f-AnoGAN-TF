@@ -47,8 +47,8 @@ class f_AnoGAN(object):
 
         tf.compat.v1.summary.scalar('f-AnoGAN/mean_real', self.losses['mean_real'])
         tf.compat.v1.summary.scalar('f-AnoGAN/mean_fake', self.losses['mean_fake'])
-        tf.compat.v1.summary.scalar('f-AnoGAN/mean_real', self.losses['izi'])
-        tf.compat.v1.summary.scalar('f-AnoGAN/mean_fake', self.losses['ziz'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/mean_izi', self.losses['izi'])
+        tf.compat.v1.summary.scalar('f-AnoGAN/mean_ziz', self.losses['ziz'])
         tf.compat.v1.summary.scalar('f-AnoGAN/loss_d', self.losses['loss_d'])
         tf.compat.v1.summary.scalar('f-AnoGAN/loss_g', self.losses['loss_g'])
         tf.compat.v1.summary.scalar('f-AnoGAN/loss_e', self.losses['loss_e'])
@@ -72,7 +72,7 @@ class f_AnoGAN(object):
                     _, summaries = self.sess.run([self.optimizer_g, self.summaries], \
                         feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
                     summary_list.append(summaries)
-                else:
+                elif(phase == 1):
                     _, summaries = self.sess.run([self.optimizer_e, self.summaries], \
                         feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
                     summary_list.append(summaries)
@@ -85,7 +85,7 @@ class f_AnoGAN(object):
                     _, summaries = self.sess.run([self.optimizer_g, self.summaries], \
                         feed_dict=feed_tr)
                     summary_list.append(summaries)
-                else:
+                elif(phase == 1):
                     _, summaries = self.sess.run([self.optimizer_e, self.summaries], \
                         feed_dict=feed_tr)
                     summary_list.append(summaries)
@@ -93,11 +93,12 @@ class f_AnoGAN(object):
             for summaries in summary_list:
                 self.summary_writer.add_summary(summaries, iteration)
 
+        x_fake, loss_d, loss_g, loss_e = None, None, None, None
         if(phase == 0):
             x_fake, loss_d, loss_g, loss_e = \
                 self.sess.run([self.variables['g_fake'], self.losses['loss_d'], self.losses['loss_g'], self.losses['loss_e']], \
                 feed_dict=feed_te)
-        else:
+        elif(phase == 1):
             x_fake, loss_d, loss_g, loss_e = \
                 self.sess.run([self.variables['x_fake'], self.losses['loss_d'], self.losses['loss_g'], self.losses['loss_e']], \
                 feed_dict=feed_te)
@@ -177,9 +178,12 @@ class f_AnoGAN(object):
         dim_k = self.zdim
         w_factor = 1
         self.losses['izi'] = \
-            self.loss_l2(self.x, self.variables['x_fake'], [0, 1, 2, 3]) / dim_n
+            tf.reduce_mean(\
+                self.loss_l2(self.x, self.variables['x_fake'], [1, 2, 3]) * (1/dim_n))
         self.losses['ziz'] = \
-            self.loss_l2(self.variables['z_real'], self.variables['z_fake'], [0, 1]) / dim_k * w_factor
+            tf.reduce_mean(\
+                self.loss_l2(self.variables['z_real'], self.variables['z_fake'], [1]) \
+                * (dim_k / w_factor))
         self.losses['loss_e'] = self.losses['izi'] + self.losses['ziz']
 
         self.variables['params_d'], self.variables['params_g'], self.variables['params_e'] = \
@@ -219,9 +223,8 @@ class f_AnoGAN(object):
             name='enc', verbose=verbose)
 
         self.variables['x_fake'] = \
-            tf.stop_gradient(
-                self.__decoder(z=self.variables['z_real'], ksize=ksize, reuse=True, \
-                name='gen', verbose=False))
+            self.__decoder(z=self.variables['z_real'], ksize=ksize, reuse=True, \
+                name='gen', verbose=False)
 
         self.variables['z_fake'] = \
             self.__encoder(x=self.variables['x_fake'], ksize=ksize, outdim=self.zdim, reuse=True, \

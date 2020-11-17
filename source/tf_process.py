@@ -164,9 +164,11 @@ def test(neuralnet, dataset, batch_size):
         x_te, y_te, terminator = dataset.next_test(1)
         z_te = random_noise(1, neuralnet.zdim)
         step_dict = neuralnet.step(x=x_te, z=z_te, training=False, phase=1)
-        x_fake, loss_enc = step_dict['x_fake'], step_dict['loss_e']
+        x_fake, score_anomaly = \
+            step_dict['x_fake'], np.sum(((x_te - step_dict['x_fake'])**2 + (1e-9))**(0.5))
+
         if(y_te[0] == 1):
-            loss_list.append(loss_enc)
+            loss_list.append(score_anomaly)
 
         if(terminator): break
 
@@ -185,12 +187,13 @@ def test(neuralnet, dataset, batch_size):
         x_te, y_te, terminator = dataset.next_test(1)
         z_te = random_noise(1, neuralnet.zdim)
         step_dict = neuralnet.step(x=x_te, z=z_te, training=False, phase=1)
-        x_fake = step_dict['x_fake']
+        x_fake, score_anomaly = \
+            step_dict['x_fake'], np.sum(((x_te - step_dict['x_fake'])**2 + (1e-9))**(0.5))
 
-        loss4box[y_te[0]].append(loss_enc)
+        loss4box[y_te[0]].append(score_anomaly)
 
-        outcheck = loss_enc > outbound
-        fcsv.write("%d, %.5f, %r\n" %(y_te, loss_enc, outcheck))
+        outcheck = score_anomaly > outbound
+        fcsv.write("%d, %.5f, %r\n" %(y_te, score_anomaly, outcheck))
 
         [h, w, c] = x_fake[0].shape
         canvas = np.ones((h, w*3, c), np.float32)
@@ -198,9 +201,9 @@ def test(neuralnet, dataset, batch_size):
         canvas[:, w:w*2, :] = x_fake[0]
         canvas[:, w*2:, :] = (x_te[0]-x_fake[0])**2
         if(outcheck):
-            plt.imsave(os.path.join("test", "outbound", "%08d-%08d.png" %(testnum, int(loss_enc))), gray2rgb(gray=canvas))
+            plt.imsave(os.path.join("test", "outbound", "%08d-%08d.png" %(testnum, int(score_anomaly))), gray2rgb(gray=canvas))
         else:
-            plt.imsave(os.path.join("test", "inbound", "%08d-%08d.png" %(testnum, int(loss_enc))), gray2rgb(gray=canvas))
+            plt.imsave(os.path.join("test", "inbound", "%08d-%08d.png" %(testnum, int(score_anomaly))), gray2rgb(gray=canvas))
 
         testnum += 1
 
