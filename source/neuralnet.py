@@ -176,7 +176,7 @@ class f_AnoGAN(object):
 
         dim_n = self.height * self.width * self.channel
         dim_k = self.zdim
-        w_factor = 1
+        w_factor = 0.1
         self.losses['izi'] = \
             tf.reduce_mean(\
                 self.loss_l2(self.x, self.variables['x_fake'], [1, 2, 3]) * (1/dim_n))
