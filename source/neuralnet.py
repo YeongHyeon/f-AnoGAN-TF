@@ -183,7 +183,7 @@ class f_AnoGAN(object):
         self.losses['ziz'] = \
             tf.reduce_mean(\
                 self.loss_l2(self.variables['z_real'], self.variables['z_fake'], [1]) \
-                * (dim_k / w_factor))
+                * (w_factor / dim_k))
         self.losses['loss_e'] = self.losses['izi'] + self.losses['ziz']
 
         self.variables['params_d'], self.variables['params_g'], self.variables['params_e'] = \
